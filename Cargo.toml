@@ -1,5 +1,5 @@
 [package]
-name = "your_package_name"
+name = "RustBot"
 version = "0.1.0"
 edition = "2018"
 
@@ -7,3 +7,4 @@ edition = "2018"
 serenity = "0.12.2"
 tokio = { version = "1.40.0", features = ["full"] }
 dotenv = "0.15.0"
+sqlx = { version = "0.8.2", features = ["postgres", "runtime-tokio-native-tls"] }
