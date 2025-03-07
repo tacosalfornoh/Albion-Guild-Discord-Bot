@@ -6,7 +6,7 @@ use crate::commands::*;
 
 pub async fn handle_interaction(ctx: Context, interaction: Interaction) {
     if let Interaction::Command(command) = interaction {
-        // * Extracted logic into a separate function
+        // Extracted logic into a separate function
         let content = handle_command(&command).await;
 
         let data = CreateInteractionResponseMessage::new().content(content);
@@ -23,7 +23,7 @@ pub async fn handle_interaction(ctx: Context, interaction: Interaction) {
 async fn handle_command(command: &CommandInteraction) -> String {
     match command.data.name.as_str() {
         "ping" => ping::run(&command.data.options()),
-        "balance" => balance::run(&command.data.options()),
+        "balance" => balance::run(&command.data.options()).await,
         _ => "not implemented :(".to_string(),
     }
 }

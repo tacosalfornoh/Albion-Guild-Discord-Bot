@@ -1,6 +1,7 @@
 pub mod message_handler;
 pub mod interaction_create_handler;
 pub mod ready_handler;
+pub mod guild_create_handler;
 
 use serenity::async_trait;
 use serenity::model::prelude::*;
@@ -18,5 +19,8 @@ impl EventHandler for Handler {
     }
     async fn ready(&self, ctx: Context, ready: Ready) {
         ready_handler::ready(ctx, ready).await;
+    }
+    async fn guild_create(&self, ctx: Context, guild: Guild, is_new: Option<bool>) {
+        guild_create_handler::handle_guild_create(ctx, guild, is_new).await;
     }
 }
