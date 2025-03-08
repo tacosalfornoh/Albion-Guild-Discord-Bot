@@ -17,7 +17,8 @@ pub async fn handle_guild_create(ctx: Context, guild: Guild, _is_new: Option<boo
     let discord_data = Discord {
         discord_id: Some(guild.id.get() as i64), // ID del server
         discord_name: Some(guild.name), // Nome del server
-        joined_at: Some(chrono::Utc::now().to_rfc3339()), // Data e ora correnti
+        // joined_at: Some(chrono::Utc::now().to_rfc3339()), // Data e ora correnti
+        guild.joined_at.map(|ts| ts.to_rfc3339())
         balance: Some(0), // Imposta il saldo iniziale a 0 (o un altro valore predefinito)
     };
     
